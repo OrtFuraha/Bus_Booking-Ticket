@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ritco - Contact Us</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+            margin-top: 70px;
+        }
+        .contact-hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .contact-card:hover { transform: translateY(-5px); }
+        .contact-card i { font-size: 40px; color: #667eea; }
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .contact-form textarea { height: 150px; }
+        .contact-form button {
+            background: #667eea;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .contact-form button:hover { background: #5a67d8; }
+    </style>
+</head>
+<body>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </button>
+    <header>
+        <nav class="nav" id="navbar">
+            <div class="nav-logo">Ritco</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/booking">Booking</a></li>
+                <li><a href="/contactUs" class="active">Contact Us</a></li>
+                <li><a href="/login" class="butt"><button class="login-button">Login / Sign Up</button></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="contact-hero">
+        <h1>Get in Touch</h1>
+        <p>We're here to help you with your travel needs</p>
+    </section>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <i class='bx bx-phone'></i>
+            <h3>Phone</h3>
+            <p>+250 789 117 044</p>
+            <p>Mon-Fri 8am-6pm</p>
+        </div>
+        <div class="contact-card">
+            <i class='bx bx-envelope'></i>
+            <h3>Email</h3>
+            <p>info@ritco.com</p>
+            <p>support@ritco.com</p>
+        </div>
+        <div class="contact-card">
+            <i class='bx bx-map'></i>
+            <h3>Address</h3>
+            <p>Kigali, Rwanda</p>
+            <p>KN 5 Rd, Remera</p>
+        </div>
+    </div>
+
+    <div class="contact-form">
+        <h2>Send Us a Message</h2>
+        <form id="contactForm">
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <input type="text" placeholder="Subject" required />
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <div id="contactMessage" style="margin-top: 15px;"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-contaner-up">
+                <div class="footer-brand">
+                    <h2 class="footer-logo">Ritco</h2>
+                    <p>Your trusted partner for bus travel across Rwanda.</p>
+                </div>
+            </div>
+            <div class="footer-line"></div>
+            <div class="footer-container-down">
+                <div class="footer-text-left">
+                    <p>© <%= new Date().getFullYear() %> Ritco. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('contactMessage').innerHTML = '<div style="background: #d4edda; padding: 15px; border-radius: 8px; color: #155724;">Thank you! We\'ll get back to you soon.</div>';
+            this.reset();
+        });
+    </script>
+    <script src="/js/scroll.js"></script>
+    <script src="/js/notifications.js"></script>
+</body>
+</html>

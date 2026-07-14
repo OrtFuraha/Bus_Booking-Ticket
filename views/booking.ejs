@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ritco - Booking</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/booking.css" />
+    <link rel="stylesheet" href="/css/bookingform.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+</head>
+<body>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </button>
+    <header>
+        <nav class="nav solid" id="navbar">
+            <div class="nav-logo">Ritco</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/booking">Booking</a></li>
+                <li><a href="/contactUs">Contact Us</a></li>
+                <li><a href="/login" class="butt"><button class="login-button">Login / Sign Up</button></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="booking-page">
+        <div class="booking-hero">
+            <div class="booking-hero-text">
+                <span class="booking-tag">Live Departures</span>
+                <h1>Choose the Best Bus for Your Route</h1>
+                <p>Browse updated trips, compare options, and continue to secure ticket booking.</p>
+            </div>
+            <div class="booking-hero-stat">
+                <span>Trips Found</span>
+                <strong><%= trips ? trips.length : 0 %></strong>
+            </div>
+        </div>
+
+        <% if (trips && trips.length > 0) { %>
+        <div class="buses-grid booking-grid">
+            <% trips.forEach(trip => { %>
+            <div class="bus-card">
+                <div class="bus-card-top">
+                    <div class="agency-name"><%= trip.C_Name %></div>
+                    <div class="seats-badge <%= trip.seats_left <= 5 ? 'seats-low' : '' %>">
+                        <%= trip.seats_left %> seats
+                    </div>
+                </div>
+                <div class="route-display">
+                    <div class="route-city"><%= trip.L_from %></div>
+                    <div class="route-arrow">
+                        <div class="route-line"></div>
+                        <i class='bx bx-right-arrow-alt'></i>
+                    </div>
+                    <div class="route-city"><%= trip.L_to %></div>
+                </div>
+                <div class="bus-card-details">
+                    <div class="detail-item"><i class='bx bx-time'></i><span><%= trip.Time_to_leave %></span></div>
+                    <div class="detail-item"><i class='bx bx-money'></i><span><%= trip.price %> RWF</span></div>
+                    <div class="detail-item"><i class='bx bx-id-card'></i><span><%= trip.Car_Plaque %></span></div>
+                    <div class="detail-item"><i class='bx bx-phone'></i><span><%= trip.C_Phone %></span></div>
+                </div>
+                <a href="/booking?booking_form=<%= trip.id %>" class="get-ticket-btn">
+                    Get Ticket <i class='bx bx-right-arrow-alt'></i>
+                </a>
+            </div>
+            <% }); %>
+        </div>
+        <% } else { %>
+        <div class="no-buses">
+            <h3>No buses available</h3>
+            <p>Try another company or route.</p>
+        </div>
+        <% } %>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-contaner-up">
+                <div class="footer-brand">
+                    <h2 class="footer-logo">Ritco</h2>
+                    <p>Your trusted partner for bus travel across Rwanda.</p>
+                    <div class="footer-contact-line">
+                        <i class='bx bx-phone'></i> 0789117044
+                    </div>
+                </div>
+                <div class="footer-col-holder">
+                    <div class="col-footer">
+                        <h3>Platform</h3>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/booking">Booking</a></li>
+                            <li><a href="/contactUs">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-footer">
+                        <h3>Account</h3>
+                        <ul>
+                            <li><a href="/login">Agency Login</a></li>
+                            <li><a href="/register">Agency Signup</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-line"></div>
+            <div class="footer-container-down">
+                <div class="footer-text-left">
+                    <p>© <%= new Date().getFullYear() %> Ritco. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/scroll.js"></script>
+    <script src="/js/notifications.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/chatbot.js"></script>
+</body>
+</html>

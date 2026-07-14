@@ -1,0 +1,261 @@
+/* =========================================
+   RWANDA-BUS — footer.css
+   ========================================= */
+
+:root {
+  --orange: #229954;
+  --orange-light: #45b26b;
+  --white: #ffffff;
+  --black: #0a0a0a;
+  --dark: #111111;
+  --gray: #888888;
+  --border-dark: rgba(255,255,255,0.08);
+}
+
+.footer {
+  background-color: var(--black);
+  padding: 4rem 2rem 2rem;
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.footer-contaner-up {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Brand */
+.footer-brand {
+  max-width: 280px;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2.5rem;
+  color: var(--white);
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+}
+
+.footer-logo span { color: var(--orange); }
+
+.footer-brand p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.footer-contact-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.footer-contact-line i { font-size: 1.1rem; }
+
+/* Columns */
+.footer-col-holder {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.col-footer {
+  min-width: 140px;
+}
+
+.col-footer h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--orange);
+  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.col-footer h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2rem;
+  height: 2px;
+  background: var(--orange);
+  border-radius: 1px;
+}
+
+.col-footer ul { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.col-footer ul li a {
+  font-size: 0.9rem;
+  color: var(--gray);
+  transition: color 0.3s, padding-left 0.3s;
+  display: inline-block;
+}
+
+.col-footer ul li a:hover {
+  color: var(--orange);
+  padding-left: 4px;
+}
+
+/* Newsletter */
+.footer-form {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-dark);
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.footer-form h4 {
+  font-size: 0.85rem;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.footer-form p {
+  font-size: 0.75rem;
+  color: var(--gray);
+  margin-top: 0.5rem;
+}
+
+.subscribe {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.subscribe input {
+  height: 38px;
+  width: 100%;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 0.5rem;
+  padding: 0 0.8rem;
+  color: var(--white);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.subscribe input::placeholder { color: rgba(255,255,255,0.3); }
+
+.subscribe input:focus {
+  border-color: var(--orange);
+}
+
+.subscribe button {
+  height: 38px;
+  width: 100%;
+  background: var(--orange);
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 0.04em;
+}
+
+.subscribe button:hover {
+  background: #cc5500;
+  transform: translateY(-1px);
+}
+
+/* Divider */
+.footer-line {
+  background: var(--border-dark);
+  width: 100%;
+  height: 1px;
+  margin: 0;
+}
+
+/* Footer Bottom */
+.footer-container-down {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0 0;
+}
+
+.footer-text-left p {
+  font-size: 0.82rem;
+  color: var(--gray);
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.footer-social li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--gray);
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+.footer-social li a:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+
+@media screen and (max-width: 900px) {
+  .footer-contaner-up {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .footer-brand { max-width: 100%; }
+  .footer-col-holder { justify-content: flex-start; flex-wrap: wrap; }
+}
+
+@media screen and (max-width: 600px) {
+  .footer-col-holder {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .col-footer { min-width: unset; width: 100%; }
+  .footer-container-down {
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .footer-social { justify-content: center; }
+  .subscribe { flex-direction: column; }
+  .subscribe input,
+  .subscribe button { width: 100%; }
+}

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RITCO - Track Bus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; }
+        .btn-primary { background: #15803D; color: white; padding: 10px 24px; border-radius: 10px; font-weight: 600; transition: background 0.2s; border: none; cursor: pointer; }
+        .btn-primary:hover { background: #166534; }
+        .card { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #E5E7EB; }
+        .nav-link { color: #1F2937; font-weight: 500; padding: 8px 16px; border-radius: 8px; transition: background 0.2s; }
+        .nav-link:hover { background: #F3F4F6; }
+        .nav-link-active { background: #15803D; color: white; }
+        .nav-link-active:hover { background: #166534; }
+        .input-field { width: 100%; padding: 12px 16px; border: 1px solid #E5E7EB; border-radius: 10px; font-size: 15px; transition: border 0.2s; background: white; }
+        .input-field:focus { outline: none; border-color: #15803D; box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.1); }
+        .track-card { border-left: 4px solid #15803D; }
+        .status-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+        .status-dot-active { background: #15803D; animation: pulse 1.5s ease-in-out infinite; }
+        .status-dot-arrived { background: #6B7280; }
+        .status-dot-delayed { background: #F59E0B; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #E5E7EB; }
+        .timeline-item { position: relative; padding-bottom: 24px; }
+        .timeline-item::before { content: ''; position: absolute; left: -26px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #E5E7EB; border: 2px solid white; }
+        .timeline-item.active::before { background: #15803D; }
+        .timeline-item.arrived::before { background: #6B7280; }
+        .footer-link { color: #9CA3AF; transition: color 0.2s; }
+        .footer-link:hover { color: white; }
+        .badge-green { background: #DCFCE7; color: #15803D; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-[#15803D] rounded-lg flex items-center justify-center">
+                        <i class="fas fa-bus text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-[#111827]">RITCO</span>
+                    <span class="text-xs font-semibold text-[#15803D] bg-[#DCFCE7] px-2 py-0.5 rounded-full">Official</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/booking" class="nav-link">Book Ticket</a>
+                    <a href="/routes" class="nav-link">Routes</a>
+                    <a href="/schedule" class="nav-link">Bus Schedule</a>
+                    <a href="/track" class="nav-link nav-link-active">Track Bus</a>
+                    <a href="/support" class="nav-link">Support</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                    <a href="/login" class="nav-link text-[#15803D] font-semibold">Login</a>
+                </div>
+                <button class="md:hidden text-gray-700" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-4">
+            <div class="flex flex-col space-y-2 px-4">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/booking" class="nav-link">Book Ticket</a>
+                <a href="/routes" class="nav-link">Routes</a>
+                <a href="/schedule" class="nav-link">Bus Schedule</a>
+                <a href="/track" class="nav-link nav-link-active">Track Bus</a>
+                <a href="/support" class="nav-link">Support</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="/login" class="nav-link text-[#15803D] font-semibold">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-24 pb-12 bg-[#F8FAFC] border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-[#111827]">Track Your Bus</h1>
+                    <p class="text-[#6B7280] mt-2">Real-time bus tracking and location updates</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <span class="text-sm font-semibold text-[#15803D] bg-[#DCFCE7] px-4 py-2 rounded-full">
+                        <i class="fas fa-satellite-dish mr-2"></i> Live Tracking
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracking Form -->
+    <section class="py-6 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-[#6B7280] mb-1"><i class="fas fa-ticket-alt text-[#15803D] mr-1"></i> Booking ID</label>
+                    <input type="text" placeholder="Enter booking ID (e.g., #BK-001)" class="input-field"/>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-[#6B7280] mb-1"><i class="fas fa-bus text-[#15803D] mr-1"></i> Bus Number</label>
+                    <input type="text" placeholder="Enter bus number" class="input-field"/>
+                </div>
+                <div class="flex items-end">
+                    <button class="w-full btn-primary py-3"><i class="fas fa-search mr-2"></i> Track Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracking Results -->
+    <section class="py-12 bg-[#F8FAFC]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Bus Info -->
+                <div class="lg:col-span-1">
+                    <div class="card track-card">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-12 h-12 bg-[#15803D] rounded-full flex items-center justify-center">
+                                <i class="fas fa-bus text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-[#111827]">RITCO-002</h3>
+                                <p class="text-sm text-[#6B7280]">Volcano Express</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#6B7280]">Status</span>
+                                <span class="font-semibold text-[#15803D]"><span class="status-dot status-dot-active mr-2"></span> In Transit</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#6B7280]">Route</span>
+                                <span class="font-semibold text-[#111827]">Kigali → Musanze</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#6B7280]">Current Location</span>
+                                <span class="font-semibold text-[#111827]">Gakenke</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#6B7280]">Next Stop</span>
+                                <span class="font-semibold text-[#111827]">Rulindo</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#6B7280]">Estimated Arrival</span>
+                                <span class="font-semibold text-[#111827]">10:00 AM</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-[#6B7280]">On-Time Status</span>
+                                <span class="font-semibold text-[#15803D]">On Schedule</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm pt-2 border-t border-gray-100">
+                                <span class="text-[#6B7280]">Last Updated</span>
+                                <span class="font-semibold text-[#111827]">2 min ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map / Journey Progress -->
+                <div class="lg:col-span-2">
+                    <div class="card">
+                        <h3 class="font-bold text-[#111827] mb-4">Journey Progress</h3>
+                        <div class="bg-[#F8FAFC] rounded-lg p-4 mb-4">
+                            <div class="flex items-center justify-between text-sm mb-2">
+                                <span class="text-[#6B7280]">Kigali</span>
+                                <span class="text-[#6B7280]">Musanze</span>
+                            </div>
+                            <div class="relative h-3 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="absolute top-0 left-0 h-full bg-[#15803D] rounded-full" style="width: 45%;"></div>
+                                <div class="absolute top-1/2 left-[45%] -translate-y-1/2 w-4 h-4 bg-[#15803D] border-2 border-white rounded-full"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-xs text-[#6B7280] mt-1">
+                                <span>Departure: 7:00 AM</span>
+                                <span>45% Complete</span>
+                                <span>Arrival: 10:00 AM</span>
+                            </div>
+                        </div>
+
+                        <!-- Timeline -->
+                        <div class="timeline">
+                            <div class="timeline-item arrived">
+                                <p class="font-semibold text-[#111827] text-sm">Departed Kigali</p>
+                                <p class="text-xs text-[#6B7280]">7:00 AM</p>
+                            </div>
+                            <div class="timeline-item active">
+                                <p class="font-semibold text-[#15803D] text-sm">Arrived at Gakenke</p>
+                                <p class="text-xs text-[#6B7280]">8:30 AM - Current Location</p>
+                            </div>
+                            <div class="timeline-item">
+                                <p class="font-semibold text-[#111827] text-sm">Arriving at Rulindo</p>
+                                <p class="text-xs text-[#6B7280]">Estimated 9:15 AM</p>
+                            </div>
+                            <div class="timeline-item">
+                                <p class="font-semibold text-[#111827] text-sm">Arriving at Musanze</p>
+                                <p class="text-xs text-[#6B7280]">Estimated 10:00 AM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <button class="btn-primary py-3"><i class="fas fa-bell mr-2"></i> Get Alerts</button>
+                        <button class="btn-primary py-3 bg-[#1F2937] hover:bg-[#111827]"><i class="fas fa-share-alt mr-2"></i> Share Location</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#111827] text-gray-300 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-[#15803D] rounded-lg flex items-center justify-center">
+                            <i class="fas fa-bus text-white text-sm"></i>
+                        </div>
+                        <span class="text-white font-bold text-xl">RITCO</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Rwanda's leading bus transport company.</p>
+                </div>
+                <div><h4 class="text-white font-semibold mb-4">Quick Links</h4><ul class="space-y-2 text-sm"><li><a href="/booking" class="footer-link">Book Ticket</a></li><li><a href="/schedule" class="footer-link">View Schedule</a></li><li><a href="/track" class="footer-link">Track Bus</a></li></ul></div>
+                <div><h4 class="text-white font-semibold mb-4">Support</h4><ul class="space-y-2 text-sm"><li><a href="/support" class="footer-link">Help Center</a></li><li><a href="/contact" class="footer-link">Contact Us</a></li><li><a href="/faq" class="footer-link">FAQs</a></li></ul></div>
+                <div><h4 class="text-white font-semibold mb-4">Follow Us</h4><div class="flex space-x-4"><a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#15803D] transition"><i class="fab fa-facebook-f"></i></a><a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#15803D] transition"><i class="fab fa-twitter"></i></a><a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#15803D] transition"><i class="fab fa-instagram"></i></a></div></div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400"><p>© 2024 RITCO. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+:root {
+  --darkblue: #229954;
+  --dark: #111111;
+  --indigo: #6610f2;
+  --secondary: #d7dfa3;
+  --darksecondary: #00ffff;
+  --white: #fff;
+  --darkwhite: #c5c3c3;
+}
+html::-webkit-scrollbar-track {
+  background-color: var(--dark);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+}
+ul li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  text-transform: capitalize;
+}
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--darkblue);
+}
+nav {
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+nav ul {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+nav ul li a {
+  color: var(--white);
+}
+.booking-button {
+    border: none;
+  background-color:transparent;
+  color: var();
+  
+}
+nav ul li button {
+  border: 1px solid var(--darksecondary);
+  background-color: var(--darksecondary);
+  padding: 10px;
+  color: var(--dark);
+  cursor: pointer;
+}
+

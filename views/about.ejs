@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RITCO - About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; }
+        .btn-primary { background: #15803D; color: white; padding: 10px 24px; border-radius: 10px; font-weight: 600; transition: background 0.2s; border: none; cursor: pointer; }
+        .btn-primary:hover { background: #166534; }
+        .card { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #E5E7EB; }
+        .nav-link { color: #1F2937; font-weight: 500; padding: 8px 16px; border-radius: 8px; transition: background 0.2s; }
+        .nav-link:hover { background: #F3F4F6; }
+        .nav-link-active { background: #15803D; color: white; }
+        .nav-link-active:hover { background: #166534; }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: #15803D; }
+        .value-card { text-align: center; padding: 24px; border-radius: 10px; border: 1px solid #E5E7EB; transition: all 0.2s; }
+        .value-card:hover { border-color: #15803D; background: #F8FAFC; }
+        .footer-link { color: #9CA3AF; transition: color 0.2s; }
+        .footer-link:hover { color: white; }
+        .badge-green { background: #DCFCE7; color: #15803D; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .mission-card { background: #15803D; color: white; border-radius: 10px; padding: 32px; }
+        .team-card { text-align: center; padding: 20px; border-radius: 10px; border: 1px solid #E5E7EB; transition: all 0.2s; }
+        .team-card:hover { border-color: #15803D; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-[#15803D] rounded-lg flex items-center justify-center">
+                        <i class="fas fa-bus text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-[#111827]">RITCO</span>
+                    <span class="text-xs font-semibold text-[#15803D] bg-[#DCFCE7] px-2 py-0.5 rounded-full">Official</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/booking" class="nav-link">Book Ticket</a>
+                    <a href="/routes" class="nav-link">Routes</a>
+                    <a href="/schedule" class="nav-link">Bus Schedule</a>
+                    <a href="/track" class="nav-link">Track Bus</a>
+                    <a href="/support" class="nav-link">Support</a>
+                    <a href="/about" class="nav-link nav-link-active">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                    <a href="/login" class="nav-link text-[#15803D] font-semibold">Login</a>
+                </div>
+                <button class="md:hidden text-gray-700" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-4">
+            <div class="flex flex-col space-y-2 px-4">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/booking" class="nav-link">Book Ticket</a>
+                <a href="/routes" class="nav-link">Routes</a>
+                <a href="/schedule" class="nav-link">Bus Schedule</a>
+                <a href="/track" class="nav-link">Track Bus</a>
+                <a href="/support" class="nav-link">Support</a>
+                <a href="/about" class="nav-link nav-link-active">About</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="/login" class="nav-link text-[#15803D] font-semibold">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="pt-24 pb-12 bg-[#F8FAFC] border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-[#111827]">About RITCO</h1>
+                    <p class="text-[#6B7280] mt-2">Rwanda's leading bus transport company</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <span class="text-sm font-semibold text-[#15803D] bg-[#DCFCE7] px-4 py-2 rounded-full">
+                        <i class="fas fa-calendar-alt mr-2"></i> 15+ Years of Service
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="mission-card">
+                    <i class="fas fa-bullseye text-4xl mb-4"></i>
+                    <h2 class="text-2xl font-bold mb-2">Our Mission</h2>
+                    <p class="text-white/80">To provide safe, reliable, and comfortable bus transportation that connects communities across Rwanda, making travel accessible to everyone.</p>
+                </div>
+                <div class="mission-card bg-[#1F2937]">
+                    <i class="fas fa-eye text-4xl mb-4"></i>
+                    <h2 class="text-2xl font-bold mb-2">Our Vision</h2>
+                    <p class="text-white/80">To become East Africa's most trusted bus transport company, setting the standard for safety, comfort, and customer service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="py-12 bg-white border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-[#15803D] font-semibold text-sm uppercase tracking-wider">Our Impact</span>
+                <h2 class="text-3xl font-bold text-[#111827] mt-2">RITCO by the Numbers</h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div><div class="stat-number">500+</div><p class="text-[#6B7280] mt-1">Daily Trips</p></div>
+                <div><div class="stat-number">150+</div><p class="text-[#6B7280] mt-1">Routes</p></div>
+                <div><div class="stat-number">500K+</div><p class="text-[#6B7280] mt-1">Customers</p></div>
+                <div><div class="stat-number">98%</div><p class="text-[#6B7280] mt-1">On-Time Rate</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="py-12 bg-[#F8FAFC]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-[#15803D] font-semibold text-sm uppercase tracking-wider">Core Values</span>
+                <h2 class="text-3xl font-bold text-[#111827] mt-2">What Drives Us</h2>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="value-card">
+                    <i class="fas fa-shield-alt text-[#15803D] text-3xl mb-3"></i>
+                    <h4 class="font-bold text-[#111827]">Safety First</h4>
+                    <p class="text-sm text-[#6B7280] mt-1">Passenger safety is our top priority</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-clock text-[#15803D] text-3xl mb-3"></i>
+                    <h4 class="font-bold text-[#111827]">Reliability</h4>
+                    <p class="text-sm text-[#6B7280] mt-1">On-time service you can count on</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-user-check text-[#15803D] text-3xl mb-3"></i>
+                    <h4 class="font-bold text-[#111827]">Customer Focus</h4>
+                    <p class="text-sm text-[#6B7280] mt-1">Your satisfaction is our goal</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-leaf text-[#15803D] text-3xl mb-3"></i>
+                    <h4 class="font-bold text-[#111827]">Sustainability</h4>
+                    <p class="text-sm text-[#6B7280] mt-1">Committed to green transport</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#111827] text-gray-300 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-[#15803D] rounded-lg flex items-center justify-center">
+                            <i class="fas fa-bus text-white text-sm"></i>
+                        </div>
+                        <span class="text-white font-bold text-xl">RITCO</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Rwanda's leading bus transport company.</p>
+                </div>
+                <div><h4 class="text-white font-semibold mb-4">Quick Links</h4><ul class="space-y-2 text-sm"><li><a href="/booking" class="footer-link">Book Ticket</a></li><li><a href="/schedule" class="footer-link">View Schedule</a></li><li><a href="/track" class="footer-link">Track Bus</a></li></ul></div>
+                <div><h4 class="text-white font-semibold mb-4">Support</h4><ul class="space-y-2 text-sm"><li><a href="/support" class="footer-link">Help Center</a></li><li><a href="/contact" class="footer-link">Contact Us</a></li><li><a href="/faq" class="footer-link">FAQs</a></li></ul></div>
+                <div><h4 class="text-white font-semibold mb-4">Follow Us</h4><div class="flex space-x-4"><a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#15803D] transition"><i class="fab fa-facebook-f"></i></a><a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#15803D] transition"><i class="fab fa-twitter"></i></a><a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#15803D] transition"><i class="fab fa-instagram"></i></a></div></div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400"><p>© 2024 RITCO. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RITCO - Search Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+        .bus-card { background: white; border-radius: 10px; padding: 20px; border: 1px solid #E5E7EB; transition: all 0.2s; }
+        .bus-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); border-color: #15803D; }
+        .btn-book { background: #15803D; color: white; padding: 8px 24px; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; transition: background 0.2s; }
+        .btn-book:hover { background: #166534; }
+        .filter-sidebar { position: sticky; top: 80px; }
+        .input-field { width: 100%; padding: 10px 14px; border: 1px solid #E5E7EB; border-radius: 8px; font-size: 14px; transition: border 0.2s; background: white; }
+        .input-field:focus { outline: none; border-color: #15803D; box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.1); }
+        .amenity-badge { background: #F3F4F6; padding: 4px 12px; border-radius: 20px; font-size: 12px; color: #6B7280; }
+        .rating-stars { color: #F59E0B; }
+        .nav-link { color: #1F2937; font-weight: 500; padding: 8px 16px; border-radius: 8px; transition: background 0.2s; }
+        .nav-link:hover { background: #F3F4F6; }
+        .nav-link-active { background: #15803D; color: white; }
+        .btn-primary { background: #15803D; color: white; padding: 8px 20px; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; transition: background 0.2s; }
+        .btn-primary:hover { background: #166534; }
+        .sidebar-item { padding: 10px 16px; border-radius: 8px; transition: background 0.2s; cursor: pointer; display: flex; align-items: center; gap: 12px; color: #6B7280; }
+        .sidebar-item:hover { background: #F3F4F6; color: #111827; }
+        .sidebar-item-active { background: #15803D; color: white; }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-[#F8FAFC]">
+        <!-- Top Nav -->
+        <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-[#15803D] rounded-lg flex items-center justify-center"><i class="fas fa-bus text-white text-xl"></i></div>
+                        <span class="text-2xl font-bold text-[#111827]">RITCO</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-[#6B7280]"><i class="fas fa-user text-[#15803D] mr-1"></i> John Doe</span>
+                        <a href="/logout" class="p-2 hover:bg-gray-100 rounded-lg"><i class="fas fa-sign-out-alt text-[#6B7280]"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="pt-24 pb-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <!-- Filters -->
+                    <div class="lg:w-72 filter-sidebar">
+                        <div class="bg-white rounded-xl border border-gray-200 p-6">
+                            <h3 class="font-bold text-[#111827] mb-4">Filters</h3>
+                            <div class="space-y-4">
+                                <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Departure Time</label><div class="space-y-1"><label class="flex items-center space-x-2"><input type="checkbox" class="text-[#15803D]"/><span class="text-sm">Morning (6AM-12PM)</span></label><label class="flex items-center space-x-2"><input type="checkbox" class="text-[#15803D]"/><span class="text-sm">Afternoon (12PM-6PM)</span></label><label class="flex items-center space-x-2"><input type="checkbox" class="text-[#15803D]"/><span class="text-sm">Evening (6PM-12AM)</span></label></div></div>
+                                <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Price Range</label><div class="flex gap-2"><input type="number" placeholder="Min" class="input-field w-1/2"/><input type="number" placeholder="Max" class="input-field w-1/2"/></div></div>
+                                <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Bus Type</label><div class="space-y-1"><label class="flex items-center space-x-2"><input type="checkbox" class="text-[#15803D]"/><span class="text-sm">AC Seater</span></label><label class="flex items-center space-x-2"><input type="checkbox" class="text-[#15803D]"/><span class="text-sm">AC Sleeper</span></label><label class="flex items-center space-x-2"><input type="checkbox" class="text-[#15803D]"/><span class="text-sm">Standard</span></label></div></div>
+                                <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Available Seats</label><input type="number" placeholder="Min seats" class="input-field"/></div>
+                                <button class="w-full btn-primary py-2">Apply Filters</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="flex-1 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div><h2 class="text-2xl font-bold text-[#111827]">12 Buses Found</h2><p class="text-[#6B7280] text-sm">Kigali → Musanze, Dec 10, 2024</p></div>
+                            <div class="flex items-center space-x-2"><span class="text-sm text-[#6B7280]">Sort:</span><select class="input-field w-40"><option>Lowest Price</option><option>Earliest Departure</option><option>Fastest Trip</option><option>Highest Rating</option></select></div>
+                        </div>
+
+                        <!-- Bus Card -->
+                        <div class="bus-card">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div><h3 class="font-bold text-[#111827]">Volcano Express</h3><p class="text-sm text-[#6B7280]">Bus Type: AC Seater (2+2)</p></div>
+                                        <div class="flex items-center space-x-1 rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span class="text-[#111827] font-medium ml-1">4.8</span></div>
+                                    </div>
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                                        <div><p class="text-[#6B7280]">Departure</p><p class="font-semibold text-[#111827]">8:30 AM</p></div>
+                                        <div><p class="text-[#6B7280]">Arrival</p><p class="font-semibold text-[#111827]">11:00 AM</p></div>
+                                        <div><p class="text-[#6B7280]">Duration</p><p class="font-semibold text-[#111827]">2h 30m</p></div>
+                                        <div><p class="text-[#6B7280]">Seats Left</p><p class="font-semibold text-[#15803D]">12 seats</p></div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mt-3"><span class="amenity-badge"><i class="fas fa-wifi mr-1"></i> WiFi</span><span class="amenity-badge"><i class="fas fa-bolt mr-1"></i> Charging</span><span class="amenity-badge"><i class="fas fa-water mr-1"></i> Water</span><span class="amenity-badge"><i class="fas fa-snowflake mr-1"></i> AC</span></div>
+                                </div>
+                                <div class="text-right"><p class="text-2xl font-bold text-[#111827]">3,000 RWF</p><p class="text-sm text-[#6B7280]">per seat</p><a href="/seat-selection" class="inline-block mt-2 btn-book">Select Seats</a></div>
+                            </div>
+                        </div>
+
+                        <!-- Bus Card 2 -->
+                        <div class="bus-card">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div><h3 class="font-bold text-[#111827]">Rwanda Bus</h3><p class="text-sm text-[#6B7280]">Bus Type: AC Sleeper (2+1)</p></div>
+                                        <div class="flex items-center space-x-1 rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span class="text-[#111827] font-medium ml-1">4.9</span></div>
+                                    </div>
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                                        <div><p class="text-[#6B7280]">Departure</p><p class="font-semibold text-[#111827]">10:00 AM</p></div>
+                                        <div><p class="text-[#6B7280]">Arrival</p><p class="font-semibold text-[#111827]">12:30 PM</p></div>
+                                        <div><p class="text-[#6B7280]">Duration</p><p class="font-semibold text-[#111827]">2h 30m</p></div>
+                                        <div><p class="text-[#6B7280]">Seats Left</p><p class="font-semibold text-[#F59E0B]">5 seats</p></div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mt-3"><span class="amenity-badge"><i class="fas fa-wifi mr-1"></i> WiFi</span><span class="amenity-badge"><i class="fas fa-bolt mr-1"></i> Charging</span><span class="amenity-badge"><i class="fas fa-snowflake mr-1"></i> AC</span><span class="amenity-badge"><i class="fas fa-bed mr-1"></i> Sleeper</span></div>
+                                </div>
+                                <div class="text-right"><p class="text-2xl font-bold text-[#111827]">3,500 RWF</p><p class="text-sm text-[#6B7280]">per seat</p><a href="/seat-selection" class="inline-block mt-2 btn-book">Select Seats</a></div>
+                            </div>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="flex items-center justify-center space-x-2 pt-4">
+                            <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"><i class="fas fa-chevron-left"></i></button>
+                            <button class="px-4 py-2 bg-[#15803D] text-white rounded-lg">1</button>
+                            <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">2</button>
+                            <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">3</button>
+                            <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

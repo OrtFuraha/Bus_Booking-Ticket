@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RITCO - Manage Payments</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+        .sidebar { background: #111827; color: white; width: 260px; min-height: 100vh; position: fixed; left: 0; top: 0; overflow-y: auto; }
+        .sidebar-item { padding: 12px 20px; border-radius: 8px; transition: background 0.2s; cursor: pointer; display: flex; align-items: center; gap: 12px; color: #9CA3AF; }
+        .sidebar-item:hover { background: #1F2937; color: white; }
+        .sidebar-item-active { background: #15803D; color: white; }
+        .sidebar-item-active:hover { background: #166534; }
+        .main-content { margin-left: 260px; padding: 24px; background: #F8FAFC; min-height: 100vh; }
+        .card { background: white; border-radius: 10px; padding: 20px; border: 1px solid #E5E7EB; }
+        .btn-primary { background: #15803D; color: white; padding: 8px 20px; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; transition: background 0.2s; }
+        .btn-primary:hover { background: #166534; }
+        .btn-outline { background: transparent; color: #15803D; padding: 8px 20px; border-radius: 8px; font-weight: 600; border: 2px solid #15803D; cursor: pointer; transition: all 0.2s; }
+        .btn-outline:hover { background: #15803D; color: white; }
+        .table-responsive { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 12px; background: #F9FAFB; font-weight: 600; color: #6B7280; font-size: 13px; border-bottom: 2px solid #E5E7EB; }
+        td { padding: 12px; border-bottom: 1px solid #E5E7EB; }
+        .status-chip { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 500; }
+        .status-paid { background: #DCFCE7; color: #15803D; }
+        .status-pending { background: #FEF3C7; color: #D97706; }
+        .status-refunded { background: #DBEAFE; color: #2563EB; }
+        .status-failed { background: #FEE2E2; color: #DC2626; }
+        .input-field { width: 100%; padding: 10px 14px; border: 1px solid #E5E7EB; border-radius: 8px; font-size: 14px; transition: border 0.2s; background: white; }
+        .input-field:focus { outline: none; border-color: #15803D; box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.1); }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="p-6 border-b border-gray-800">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-[#15803D] rounded-lg flex items-center justify-center"><i class="fas fa-bus text-white text-xl"></i></div>
+                <span class="text-2xl font-bold text-white">RITCO</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">Admin Panel</p>
+        </div>
+        <nav class="p-4 space-y-1">
+            <a href="/admin" class="sidebar-item"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="/admin-bookings" class="sidebar-item"><i class="fas fa-ticket-alt"></i> Bookings</a>
+            <a href="/admin-passengers" class="sidebar-item"><i class="fas fa-users"></i> Passengers</a>
+            <a href="/admin-routes" class="sidebar-item"><i class="fas fa-route"></i> Routes</a>
+            <a href="/admin-schedules" class="sidebar-item"><i class="fas fa-calendar"></i> Schedules</a>
+            <a href="/admin-buses" class="sidebar-item"><i class="fas fa-bus"></i> Buses</a>
+            <a href="/admin-drivers" class="sidebar-item"><i class="fas fa-user-tie"></i> Drivers</a>
+            <a href="/admin-employees" class="sidebar-item"><i class="fas fa-users-cog"></i> Employees</a>
+            <a href="/admin-payments" class="sidebar-item sidebar-item-active"><i class="fas fa-credit-card"></i> Payments</a>
+            <a href="/admin-reports" class="sidebar-item"><i class="fas fa-chart-bar"></i> Reports</a>
+            <a href="/admin-announcements" class="sidebar-item"><i class="fas fa-bullhorn"></i> Announcements</a>
+            <a href="/admin-support" class="sidebar-item"><i class="fas fa-headset"></i> Support</a>
+            <a href="/admin-settings" class="sidebar-item"><i class="fas fa-cog"></i> Settings</a>
+            <a href="/logout" class="sidebar-item text-red-400 hover:text-red-300"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h1 class="text-2xl font-bold text-[#111827]">Manage Payments</h1>
+                <p class="text-[#6B7280] text-sm">View and manage all payment transactions</p>
+            </div>
+            <button class="btn-primary"><i class="fas fa-file-invoice mr-2"></i> Generate Report</button>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-4 gap-4 mb-6">
+            <div class="card"><div class="text-2xl font-bold text-[#15803D]">45.8M</div><p class="text-sm text-[#6B7280]">Total Revenue</p></div>
+            <div class="card"><div class="text-2xl font-bold text-[#15803D]">2.4M</div><p class="text-sm text-[#6B7280]">Today's Revenue</p></div>
+            <div class="card"><div class="text-2xl font-bold text-[#15803D]">156</div><p class="text-sm text-[#6B7280]">Transactions Today</p></div>
+            <div class="card"><div class="text-2xl font-bold text-[#F59E0B]">12</div><p class="text-sm text-[#6B7280]">Pending Payments</p></div>
+        </div>
+
+        <!-- Search -->
+        <div class="card mb-6">
+            <div class="grid md:grid-cols-4 gap-4">
+                <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Transaction ID</label><input type="text" placeholder="Search..." class="input-field"/></div>
+                <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Status</label><select class="input-field"><option>All</option><option>Paid</option><option>Pending</option><option>Refunded</option><option>Failed</option></select></div>
+                <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Date From</label><input type="date" class="input-field"/></div>
+                <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Date To</label><input type="date" class="input-field"/></div>
+            </div>
+            <div class="flex gap-2 mt-4">
+                <button class="btn-primary"><i class="fas fa-search mr-2"></i> Search</button>
+                <button class="btn-outline"><i class="fas fa-undo mr-2"></i> Reset</button>
+            </div>
+        </div>
+
+        <!-- Payments Table -->
+        <div class="card">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Passenger</th>
+                            <th>Booking</th>
+                            <th>Amount</th>
+                            <th>Method</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="font-semibold">#TRX-001</span></td>
+                            <td>John Doe</td>
+                            <td>#BK-001</td>
+                            <td>6,000 RWF</td>
+                            <td>Mobile Money</td>
+                            <td><span class="status-chip status-paid">Paid</span></td>
+                            <td>Dec 10, 2024</td>
+                            <td>
+                                <button class="text-[#15803D] text-sm font-semibold mr-2"><i class="fas fa-eye"></i></button>
+                                <button class="text-[#15803D] text-sm font-semibold"><i class="fas fa-print"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-semibold">#TRX-002</span></td>
+                            <td>Jane Smith</td>
+                            <td>#BK-002</td>
+                            <td>2,500 RWF</td>
+                            <td>Card</td>
+                            <td><span class="status-chip status-pending">Pending</span></td>
+                            <td>Dec 11, 2024</td>
+                            <td>
+                                <button class="text-[#15803D] text-sm font-semibold mr-2"><i class="fas fa-eye"></i></button>
+                                <button class="text-[#15803D] text-sm font-semibold"><i class="fas fa-print"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-semibold">#TRX-003</span></td>
+                            <td>Peter Mwangi</td>
+                            <td>#BK-003</td>
+                            <td>6,000 RWF</td>
+                            <td>Bank Transfer</td>
+                            <td><span class="status-chip status-refunded">Refunded</span></td>
+                            <td>Dec 9, 2024</td>
+                            <td>
+                                <button class="text-[#15803D] text-sm font-semibold mr-2"><i class="fas fa-eye"></i></button>
+                                <button class="text-[#15803D] text-sm font-semibold"><i class="fas fa-print"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+                <span class="text-sm text-[#6B7280]">Showing 1-3 of 156 transactions</span>
+                <div class="flex space-x-2">
+                    <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">Previous</button>
+                    <button class="px-3 py-1 bg-[#15803D] text-white rounded-lg text-sm">1</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">2</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">3</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">Next</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

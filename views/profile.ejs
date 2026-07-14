@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RITCO - Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+        .profile-card { background: white; border-radius: 10px; padding: 24px; border: 1px solid #E5E7EB; }
+        .input-field { width: 100%; padding: 12px 16px; border: 1px solid #E5E7EB; border-radius: 10px; font-size: 15px; transition: border 0.2s; background: white; }
+        .input-field:focus { outline: none; border-color: #15803D; box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.1); }
+        .btn-primary { background: #15803D; color: white; padding: 10px 24px; border-radius: 10px; font-weight: 600; border: none; cursor: pointer; transition: background 0.2s; }
+        .btn-primary:hover { background: #166534; }
+        .btn-danger { background: #DC2626; color: white; padding: 10px 24px; border-radius: 10px; font-weight: 600; border: none; cursor: pointer; transition: background 0.2s; }
+        .btn-danger:hover { background: #B91C1C; }
+        .avatar { width: 80px; height: 80px; border-radius: 50%; background: #15803D; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; font-weight: bold; }
+        .sidebar-item { padding: 10px 16px; border-radius: 8px; transition: background 0.2s; cursor: pointer; display: flex; align-items: center; gap: 12px; color: #6B7280; }
+        .sidebar-item:hover { background: #F3F4F6; color: #111827; }
+        .sidebar-item-active { background: #15803D; color: white; }
+        .sidebar-item-active:hover { background: #166534; color: white; }
+        .nav-link { color: #1F2937; font-weight: 500; padding: 8px 16px; border-radius: 8px; transition: background 0.2s; }
+        .nav-link:hover { background: #F3F4F6; }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-[#F8FAFC]">
+        <!-- Top Nav -->
+        <nav class="bg-white border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-[#15803D] rounded-lg flex items-center justify-center"><i class="fas fa-bus text-white text-xl"></i></div>
+                        <span class="text-2xl font-bold text-[#111827]">RITCO</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-[#6B7280]"><i class="fas fa-user text-[#15803D] mr-1"></i> John Doe</span>
+                        <a href="/logout" class="p-2 hover:bg-gray-100 rounded-lg"><i class="fas fa-sign-out-alt text-[#6B7280]"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid lg:grid-cols-4 gap-6">
+                <!-- Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-xl border border-gray-200 p-4">
+                        <div class="space-y-1">
+                            <a href="/dashboard" class="sidebar-item"><i class="fas fa-home"></i> Dashboard</a>
+                            <a href="/my-bookings" class="sidebar-item"><i class="fas fa-ticket-alt"></i> My Bookings</a>
+                            <a href="/profile" class="sidebar-item sidebar-item-active"><i class="fas fa-user"></i> Profile</a>
+                            <a href="/settings" class="sidebar-item"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="/logout" class="sidebar-item text-red-600 hover:bg-red-50"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="lg:col-span-3 space-y-6">
+                    <h1 class="text-2xl font-bold text-[#111827]">My Profile</h1>
+
+                    <!-- Profile Info -->
+                    <div class="profile-card">
+                        <div class="flex items-center gap-6 mb-6">
+                            <div class="avatar">JD</div>
+                            <div>
+                                <h2 class="text-xl font-bold text-[#111827]">John Doe</h2>
+                                <p class="text-[#6B7280]">john.doe@email.com</p>
+                                <span class="status-chip status-active text-sm">Verified</span>
+                            </div>
+                            <button class="btn-primary ml-auto"><i class="fas fa-edit mr-2"></i> Edit Profile</button>
+                        </div>
+                    </div>
+
+                    <!-- Edit Profile Form -->
+                    <div class="profile-card">
+                        <h3 class="font-bold text-[#111827] mb-4"><i class="fas fa-user-edit text-[#15803D] mr-2"></i> Edit Profile</h3>
+                        <form class="space-y-4">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Full Name</label><input type="text" value="John Doe" class="input-field"/></div>
+                                <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Email</label><input type="email" value="john.doe@email.com" class="input-field"/></div>
+                                <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Phone</label><input type="tel" value="+250 788 000 000" class="input-field"/></div>
+                                <div><label class="block text-sm font-medium text-[#6B7280] mb-1">National ID</label><input type="text" value="1234567890123456" class="input-field"/></div>
+                            </div>
+                            <button type="submit" class="btn-primary"><i class="fas fa-save mr-2"></i> Save Changes</button>
+                        </form>
+                    </div>
+
+                    <!-- Change Password -->
+                    <div class="profile-card">
+                        <h3 class="font-bold text-[#111827] mb-4"><i class="fas fa-key text-[#15803D] mr-2"></i> Change Password</h3>
+                        <form class="space-y-4">
+                            <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Current Password</label><input type="password" class="input-field"/></div>
+                            <div><label class="block text-sm font-medium text-[#6B7280] mb-1">New Password</label><input type="password" class="input-field"/></div>
+                            <div><label class="block text-sm font-medium text-[#6B7280] mb-1">Confirm New Password</label><input type="password" class="input-field"/></div>
+                            <button type="submit" class="btn-primary"><i class="fas fa-key mr-2"></i> Update Password</button>
+                        </form>
+                    </div>
+
+                    <!-- Danger Zone -->
+                    <div class="profile-card border-red-200">
+                        <h3 class="font-bold text-red-600 mb-4"><i class="fas fa-exclamation-triangle mr-2"></i> Danger Zone</h3>
+                        <button class="btn-danger"><i class="fas fa-trash mr-2"></i> Delete Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff6b00;
+}
+
+.selector {
+    width: 350px;
+}
+
+#selectField {
+    width: 100%;
+    padding: 1em;
+    border-radius: 6px;
+    background-color: #ccc9;
+}
+
+.list {
+    width: 100%;
+    background-color: #ccc9;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 1em;
+}
+
+.options {
+    width: 100%;
+    padding: 1em;
+    list-style: none;
+    cursor: pointer;
+}
+
+.options:hover {
+    background-color: #ccc;
+}

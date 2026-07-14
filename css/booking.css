@@ -1,0 +1,174 @@
+:root {
+  --book-bg: #f3f7fc;
+  --book-ink: #122232;
+  --book-soft: #5b6b7a;
+  --book-line: #d9e5f0;
+  --book-brand: #229954;
+  --book-brand-dark: #dd6200;
+  --book-card-shadow: 0 20px 45px rgba(11, 30, 53, 0.09);
+}
+
+.booking-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 7.4rem 2rem 4rem;
+}
+
+.booking-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.3rem;
+  background: linear-gradient(145deg, #ffffff 0%, #eff5fb 100%);
+  border: 1px solid var(--book-line);
+  border-radius: 20px;
+  box-shadow: var(--book-card-shadow);
+  padding: 1.4rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.booking-hero-text {
+  max-width: 760px;
+}
+
+.booking-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.34rem 0.78rem;
+  border-radius: 999px;
+  background: #fff2e8;
+  border: 1px solid #ffd6b8;
+  color: #c65400;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-weight: 700;
+  margin-bottom: 0.58rem;
+}
+
+.booking-hero h1 {
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 0.03em;
+  font-size: clamp(2rem, 5.5vw, 3.5rem);
+  color: var(--book-ink);
+  line-height: 0.95;
+}
+
+.booking-hero p {
+  margin-top: 0.45rem;
+  color: var(--book-soft);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.booking-hero-stat {
+  min-width: 135px;
+  text-align: center;
+  background: linear-gradient(135deg, #ff8f3f, #ff7209);
+  color: #fff;
+  border-radius: 14px;
+  padding: 0.82rem 0.85rem;
+  box-shadow: 0 15px 30px rgba(255, 122, 26, 0.34);
+}
+
+.booking-hero-stat span {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.booking-hero-stat strong {
+  display: block;
+  font-size: 1.85rem;
+  line-height: 1;
+  margin-top: 0.12rem;
+}
+
+.filter-badge {
+  border: 1px solid #d8e5f1;
+  background: #ffffff;
+  color: var(--book-ink);
+  border-radius: 13px;
+  padding: 0.78rem 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  gap: 1rem;
+  box-shadow: 0 10px 24px rgba(11, 30, 53, 0.06);
+}
+
+.filter-badge strong {
+  color: #24384d;
+}
+
+.filter-badge a {
+  color: var(--book-brand);
+  font-weight: 700;
+}
+
+.booking-grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.1rem;
+}
+
+.booking-grid .bus-card {
+  border-color: #d6e2ef;
+}
+
+.booking-grid .bus-card .get-ticket-btn {
+  background: linear-gradient(135deg, #203a52, #102638);
+}
+
+.booking-grid .bus-card .get-ticket-btn:hover {
+  background: linear-gradient(135deg, #2d4f6f, #1a3d5d);
+}
+
+.booking-alert {
+  text-align: center;
+  background: #fff;
+  border: 1px dashed #d7e4f1;
+  border-radius: 14px;
+  padding: 1.1rem;
+}
+
+.booking-alert h3 {
+  color: #16283b;
+  margin-bottom: 0.4rem;
+}
+
+.booking-alert p {
+  color: #5c6c7c;
+  margin-bottom: 0.8rem;
+}
+
+@media screen and (max-width: 900px) {
+  .booking-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .booking-hero-stat {
+    min-width: 0;
+    width: 100%;
+    text-align: left;
+    padding: 0.7rem 0.85rem;
+  }
+
+  .booking-hero-stat strong {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .booking-page {
+    padding: 6.8rem 1rem 3rem;
+  }
+
+  .filter-badge {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

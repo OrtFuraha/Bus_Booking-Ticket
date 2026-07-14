@@ -1,0 +1,363 @@
+﻿/* Additional polish for agency/admin tables and utility blocks */
+
+.available_cars_table,
+.agencies_table,
+.agency_cars_table,
+.agency_destination_table,
+.set_transportation_table {
+  margin-bottom: 1rem;
+}
+
+.available_cars_table h1,
+.agencies_table h1,
+.agency_cars_table h1,
+.agency_destination_table h1 {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  font-size: 1.15rem;
+  border-bottom: 1px solid #ffe6d3;
+  color: #1f1f1f;
+}
+
+#cyanerwose {
+  background: #fff;
+  border: 1px solid #ffd9bf;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 8px 22px rgba(139, 65, 7, 0.09);
+}
+
+#cyanerwose h1,
+#cyanerwose h2,
+#cyanerwose h3 {
+  color: #1f1f1f;
+}
+
+.agency_cars_creation_form form h2,
+.agency_destination_creation_form form h2,
+.agencies_Creation_form form h2 {
+  color: #1f1f1f;
+}
+
+#cyanerwose table {
+  margin-top: 0.8rem;
+}
+
+.legacy-notice {
+  margin-top: 4.5rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  animation: noticeOverlayIn 0.35s ease;
+}
+
+.legacy-notice.notice-leaving {
+  animation: noticeOverlayOut 0.22s ease forwards;
+}
+
+.legacy-notice .legacy-notice-card {
+  width: min(92vw, 680px) !important;
+  position: relative;
+  border-radius: 20px !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 252, 255, 0.95));
+  border: 1px solid rgba(186, 201, 217, 0.7) !important;
+  box-shadow: 0 24px 60px rgba(27, 38, 50, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  padding: 1.45rem 1.2rem 1.15rem !important;
+  display: grid;
+  gap: 0.85rem;
+  justify-items: center;
+  text-align: center;
+  overflow: hidden;
+  animation: noticeCardIn 0.35s ease;
+}
+
+.legacy-notice .notice-icon {
+  width: 66px;
+  height: 66px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 11px 24px rgba(36, 60, 84, 0.24);
+}
+
+.legacy-notice .notice-icon svg {
+  width: 34px;
+  height: 34px;
+  fill: currentColor;
+}
+
+.legacy-notice .notice-title {
+  margin: 0;
+  font-size: clamp(1.08rem, 2.4vw, 1.45rem);
+  line-height: 1.45;
+  color: #142434;
+}
+
+.legacy-notice .notice-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(20, 36, 52, 0.08);
+  color: #3f4f5f;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.legacy-notice .notice-close:hover {
+  background: rgba(20, 36, 52, 0.13);
+  transform: translateY(-1px);
+}
+
+.legacy-notice .notice-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  transform-origin: left;
+  animation-name: noticeProgress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.legacy-notice.notice-success .notice-icon {
+  color: #ffffff;
+  background: linear-gradient(150deg, #10b77e, #058a60);
+}
+
+.legacy-notice.notice-success .notice-progress {
+  background: linear-gradient(90deg, #1fc88e, #0c9a6c);
+}
+
+.legacy-notice.notice-error .notice-icon {
+  color: #ffffff;
+  background: linear-gradient(150deg, #f45454, #cf2e2e);
+}
+
+.legacy-notice.notice-error .notice-progress {
+  background: linear-gradient(90deg, #ff7474, #d23434);
+}
+
+.legacy-notice.notice-warning .notice-icon {
+  color: #ffffff;
+  background: linear-gradient(150deg, #ffb34d, #e68a00);
+}
+
+.legacy-notice.notice-warning .notice-progress {
+  background: linear-gradient(90deg, #ffcb7c, #ee9808);
+}
+
+.legacy-notice.notice-info .notice-icon {
+  color: #ffffff;
+  background: linear-gradient(150deg, #5ca4ff, #3478d6);
+}
+
+.legacy-notice.notice-info .notice-progress {
+  background: linear-gradient(90deg, #80b9ff, #468adf);
+}
+
+.legacy-notice .agency_send_button {
+  margin-top: 0.2rem !important;
+}
+
+.app-toast-stack {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 4500;
+  width: min(92vw, 360px);
+  display: grid;
+  gap: 0.62rem;
+}
+
+.app-toast {
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #d8e3ee;
+  border-radius: 14px;
+  padding: 0.66rem 0.72rem;
+  box-shadow: 0 15px 30px rgba(24, 41, 59, 0.18);
+  animation: toastIn 0.26s ease;
+}
+
+.app-toast.leaving {
+  animation: toastOut 0.22s ease forwards;
+}
+
+.app-toast-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+}
+
+.app-toast-icon svg {
+  width: 23px;
+  height: 23px;
+  fill: currentColor;
+}
+
+.app-toast-body strong {
+  display: block;
+  color: #102335;
+  font-size: 0.88rem;
+  line-height: 1.25;
+}
+
+.app-toast-body p {
+  margin: 0.14rem 0 0;
+  color: #4d6072;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.app-toast-close {
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(17, 35, 54, 0.08);
+  color: #415466;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.app-toast-success .app-toast-icon {
+  color: #ffffff;
+  background: linear-gradient(145deg, #12b57e, #04885f);
+}
+
+.app-toast-error .app-toast-icon {
+  color: #ffffff;
+  background: linear-gradient(145deg, #f45656, #ca2f2f);
+}
+
+.app-toast-warning .app-toast-icon {
+  color: #ffffff;
+  background: linear-gradient(145deg, #ffb750, #e58902);
+}
+
+.app-toast-info .app-toast-icon {
+  color: #ffffff;
+  background: linear-gradient(145deg, #5ca7ff, #3478d3);
+}
+
+@keyframes noticeOverlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes noticeCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes noticeOverlayOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes noticeProgress {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+}
+
+@media (max-width: 640px) {
+  .legacy-notice {
+    margin-top: 3.6rem !important;
+    padding: 0.7rem;
+  }
+
+  .legacy-notice .legacy-notice-card {
+    width: min(96vw, 620px) !important;
+    border-radius: 16px !important;
+    padding: 1.2rem 0.9rem 0.95rem !important;
+  }
+
+  .legacy-notice .notice-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+  }
+
+  .legacy-notice .notice-icon svg {
+    width: 27px;
+    height: 27px;
+  }
+
+  .app-toast-stack {
+    left: 0.6rem;
+    right: 0.6rem;
+    top: 0.65rem;
+    width: auto;
+  }
+}
+
+@media print {
+  .panel-topbar,
+  .admin_aside,
+  .agency_admin_aside,
+  .humburger,
+  .responsive_nav,
+  .chatbot-toggle,
+  .chatbot-box {
+    display: none !important;
+  }
+
+  .admin_container,
+  .agency_admin_container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+

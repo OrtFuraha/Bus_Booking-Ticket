@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RITCO - Reports</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+        .sidebar { background: #111827; color: white; width: 260px; min-height: 100vh; position: fixed; left: 0; top: 0; overflow-y: auto; }
+        .sidebar-item { padding: 12px 20px; border-radius: 8px; transition: background 0.2s; cursor: pointer; display: flex; align-items: center; gap: 12px; color: #9CA3AF; }
+        .sidebar-item:hover { background: #1F2937; color: white; }
+        .sidebar-item-active { background: #15803D; color: white; }
+        .sidebar-item-active:hover { background: #166534; }
+        .main-content { margin-left: 260px; padding: 24px; background: #F8FAFC; min-height: 100vh; }
+        .card { background: white; border-radius: 10px; padding: 20px; border: 1px solid #E5E7EB; }
+        .btn-primary { background: #15803D; color: white; padding: 8px 20px; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; transition: background 0.2s; }
+        .btn-primary:hover { background: #166534; }
+        .btn-outline { background: transparent; color: #15803D; padding: 8px 20px; border-radius: 8px; font-weight: 600; border: 2px solid #15803D; cursor: pointer; transition: all 0.2s; }
+        .btn-outline:hover { background: #15803D; color: white; }
+        .report-card { text-align: center; padding: 20px; border-radius: 10px; border: 1px solid #E5E7EB; transition: all 0.2s; cursor: pointer; }
+        .report-card:hover { border-color: #15803D; background: #F8FAFC; }
+        .report-icon { font-size: 2.5rem; color: #15803D; }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="p-6 border-b border-gray-800">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-[#15803D] rounded-lg flex items-center justify-center"><i class="fas fa-bus text-white text-xl"></i></div>
+                <span class="text-2xl font-bold text-white">RITCO</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">Admin Panel</p>
+        </div>
+        <nav class="p-4 space-y-1">
+            <a href="/admin" class="sidebar-item"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="/admin-bookings" class="sidebar-item"><i class="fas fa-ticket-alt"></i> Bookings</a>
+            <a href="/admin-passengers" class="sidebar-item"><i class="fas fa-users"></i> Passengers</a>
+            <a href="/admin-routes" class="sidebar-item"><i class="fas fa-route"></i> Routes</a>
+            <a href="/admin-schedules" class="sidebar-item"><i class="fas fa-calendar"></i> Schedules</a>
+            <a href="/admin-buses" class="sidebar-item"><i class="fas fa-bus"></i> Buses</a>
+            <a href="/admin-drivers" class="sidebar-item"><i class="fas fa-user-tie"></i> Drivers</a>
+            <a href="/admin-employees" class="sidebar-item"><i class="fas fa-users-cog"></i> Employees</a>
+            <a href="/admin-payments" class="sidebar-item"><i class="fas fa-credit-card"></i> Payments</a>
+            <a href="/admin-reports" class="sidebar-item sidebar-item-active"><i class="fas fa-chart-bar"></i> Reports</a>
+            <a href="/admin-announcements" class="sidebar-item"><i class="fas fa-bullhorn"></i> Announcements</a>
+            <a href="/admin-support" class="sidebar-item"><i class="fas fa-headset"></i> Support</a>
+            <a href="/admin-settings" class="sidebar-item"><i class="fas fa-cog"></i> Settings</a>
+            <a href="/logout" class="sidebar-item text-red-400 hover:text-red-300"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h1 class="text-2xl font-bold text-[#111827]">Reports</h1>
+                <p class="text-[#6B7280] text-sm">Generate and view business reports</p>
+            </div>
+            <div class="flex gap-2">
+                <button class="btn-primary"><i class="fas fa-file-pdf mr-2"></i> Export PDF</button>
+                <button class="btn-outline"><i class="fas fa-file-excel mr-2"></i> Export Excel</button>
+            </div>
+        </div>
+
+        <!-- Report Cards -->
+        <div class="grid md:grid-cols-3 gap-4 mb-6">
+            <div class="report-card">
+                <div class="report-icon"><i class="fas fa-chart-line"></i></div>
+                <h3 class="font-bold text-[#111827] mt-2">Revenue Report</h3>
+                <p class="text-sm text-[#6B7280]">Monthly revenue breakdown</p>
+            </div>
+            <div class="report-card">
+                <div class="report-icon"><i class="fas fa-ticket-alt"></i></div>
+                <h3 class="font-bold text-[#111827] mt-2">Booking Report</h3>
+                <p class="text-sm text-[#6B7280]">Booking statistics and trends</p>
+            </div>
+            <div class="report-card">
+                <div class="report-icon"><i class="fas fa-users"></i></div>
+                <h3 class="font-bold text-[#111827] mt-2">Passenger Report</h3>
+                <p class="text-sm text-[#6B7280]">Passenger demographics</p>
+            </div>
+            <div class="report-card">
+                <div class="report-icon"><i class="fas fa-route"></i></div>
+                <h3 class="font-bold text-[#111827] mt-2">Popular Routes</h3>
+                <p class="text-sm text-[#6B7280]">Most booked routes analysis</p>
+            </div>
+            <div class="report-card">
+                <div class="report-icon"><i class="fas fa-clock"></i></div>
+                <h3 class="font-bold text-[#111827] mt-2">Peak Travel Times</h3>
+                <p class="text-sm text-[#6B7280]">Busy hours and seasons</p>
+            </div>
+            <div class="report-card">
+                <div class="report-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <h3 class="font-bold text-[#111827] mt-2">Driver Performance</h3>
+                <p class="text-sm text-[#6B7280]">Driver efficiency metrics</p>
+            </div>
+        </div>
+
+        <!-- Revenue Chart -->
+        <div class="card mb-6">
+            <h3 class="font-bold text-[#111827] mb-4">Revenue Overview</h3>
+            <div class="h-64 bg-[#F8FAFC] rounded-lg flex items-center justify-center border border-gray-200">
+                <div class="text-center">
+                    <i class="fas fa-chart-bar text-4xl text-[#15803D] mb-2"></i>
+                    <p class="text-[#6B7280]">Revenue Chart</p>
+                    <p class="text-sm text-[#6B7280]">Monthly revenue: 45.8M RWF</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="card"><div class="text-2xl font-bold text-[#15803D]">45.8M</div><p class="text-sm text-[#6B7280]">Total Revenue</p></div>
+            <div class="card"><div class="text-2xl font-bold text-[#15803D]">12,456</div><p class="text-sm text-[#6B7280]">Total Bookings</p></div>
+            <div class="card"><div class="text-2xl font-bold text-[#15803D]">1,245</div><p class="text-sm text-[#6B7280]">Total Passengers</p></div>
+            <div class="card"><div class="text-2xl font-bold text-[#15803D]">98%</div><p class="text-sm text-[#6B7280]">On-Time Rate</p></div>
+        </div>
+    </main>
+</body>
+</html>
